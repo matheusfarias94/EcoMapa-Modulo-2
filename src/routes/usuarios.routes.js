@@ -17,7 +17,7 @@ usuariosRoutes.post("/", usuariosController.criarUsuario
                 $senha:"12345678",
                 $cpf:"12345678910",
                 $sexo:"masculino ou feminino",
-                $endereco:"Cidade, estado",
+                $endereco:"Rua Egidio Abelino,865,biguacu,SC",
                 $dataNascimento:"01/01/2000"
             }
         }

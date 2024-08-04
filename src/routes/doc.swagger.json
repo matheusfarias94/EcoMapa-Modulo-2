@@ -56,7 +56,7 @@
                 },
                 "endereco": {
                   "type": "string",
-                  "example": "Cidade, estado"
+                  "example": "Rua Egidio Abelino,865,biguacu,SC"
                 },
                 "dataNascimento": {
                   "type": "string",

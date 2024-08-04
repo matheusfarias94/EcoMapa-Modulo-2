@@ -44,7 +44,7 @@ class UsuarioController {
 
       const usuarioExistente = await Usuario.findOne({ where: { email, cpf } });
 
-      if (usuarioExistente) {
+      if (!usuarioExistente) {
         return res.status(409).json({ error: "Email ou CPF já existentes!" });
       }
 
