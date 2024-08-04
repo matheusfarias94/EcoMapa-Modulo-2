@@ -1,0 +1,465 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "EcoMapa API",
+    "description": " API para o projeto EcoMapa"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Insira o token JWT"
+    }
+  },
+  "paths": {
+    "/usuario/": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Cria um novo usuario",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Nome, email, senha,cpf,sexo,endereco,data de nascimento",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do usuario"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email do usuario"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "12345678"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "12345678910"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "masculino ou feminino"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Cidade, estado"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "01/01/2000"
+                }
+              },
+              "required": [
+                "nome",
+                "email",
+                "senha",
+                "cpf",
+                "sexo",
+                "endereco",
+                "dataNascimento"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "description": "Listar todos os usuarios ativos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/login/": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Efetua o login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Email e senha do usuario",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "usuario@gmail.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "12345678"
+                }
+              },
+              "required": [
+                "email",
+                "senha"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/": {
+      "post": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Cria um novo local",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Se o cep for valido,retorna o endereco,latitude,longitude e link do google maps,caso contrario preencha todos os campos",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeLocal": {
+                  "type": "string",
+                  "example": "Lagoa da Conceição"
+                },
+                "descricaoLocal": {
+                  "type": "string",
+                  "example": " Proximo a avenida das rendeiras,numero 123"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "12345678"
+                },
+                "TipoResiduoAceito": {
+                  "type": "string",
+                  "example": "Plastico"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Cidade, Estado"
+                },
+                "latitude": {
+                  "type": "string",
+                  "example": "-23.5489"
+                },
+                "longitude": {
+                  "type": "string",
+                  "example": "-46.6556"
+                }
+              },
+              "required": [
+                "nomeLocal",
+                "descricaoLocal",
+                "cep",
+                "TipoResiduoAceito",
+                "endereco",
+                "latitude",
+                "longitude"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Listar todos os locais cadastrados pelo usuario",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/{local_id}": {
+      "get": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Listar local especifico cadastrado pelo usuario",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do local"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Deleta um local especifico cadastrado pelo usuario",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do local"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Atualiza um local especifico cadastrado pelo usuario",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do local"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeLocal": {
+                  "type": "string",
+                  "example": "Lagoa da Conceição"
+                },
+                "descricaoLocal": {
+                  "type": "string",
+                  "example": " Proximo a avenida das rendeiras,numero 123"
+                },
+                "TipoResiduoAceito": {
+                  "type": "string",
+                  "example": "Plastico"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "12345678"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Cidade, Estado"
+                },
+                "latitude": {
+                  "type": "string",
+                  "example": "-23.5489"
+                },
+                "longitude": {
+                  "type": "string",
+                  "example": "-46.6389"
+                },
+                "linkMaps": {
+                  "type": "string",
+                  "example": "https://www.google.com/maps?q=-8.99218752,-39.9052332"
+                }
+              },
+              "required": [
+                "nomeLocal",
+                "descricaoLocal",
+                "TipoResiduoAceito",
+                "cep",
+                "endereco",
+                "latitude",
+                "longitude",
+                "linkMaps"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/{local_id}/mapa": {
+      "get": {
+        "tags": [
+          "Locais"
+        ],
+        "description": "Listar o link do Google Maps de um local especifico cadastrado pelo usuario",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id do local"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ]
+}
