@@ -51,9 +51,9 @@ O ECOMAPA visa facilitar a identificação e o gerenciamento de pontos de coleta
   - JWT_SECRET=palavraSegura
 
 # 🛠️ Como Abrir e Rodar o Projeto
- 1.Execute a aplicação em modo desenvolvimento:
+ - 1.Execute a aplicação em modo desenvolvimento:
     npm run start:dev
- 2.O servidor iniciará na porta:3000 - acesse <http://localhost:3000>
+ - 2.O servidor iniciará na porta:3000 - acesse <http://localhost:3000>
 
 # 🌟 Melhorias e Futuras Implementações
 - Autenticação: Adicionar suporte para facilitar o login com contas de terceiros (Google, Facebook, etc.).
