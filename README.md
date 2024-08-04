@@ -41,14 +41,14 @@ O ECOMAPA visa facilitar a identificação e o gerenciamento de pontos de coleta
 
 # ⚙️ Configuração
 1.Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente necessárias:
-  PORT_API=3000
-  DB_HOST=localhost
-  DB_PORT=5432
-  DB_NAME=api_EcoMapa
-  DB_USER=postgres
-  DB_PASSWORD=postgres
-  DB_DIALECT=postgres
-  JWT_SECRET=palavraSegura
+  - PORT_API=3000
+  - DB_HOST=localhost
+  - DB_PORT=5432
+  - DB_NAME=api_EcoMapa
+  - DB_USER=postgres
+  - DB_PASSWORD=postgres
+  - DB_DIALECT=postgres
+  - JWT_SECRET=palavraSegura
 
 # 🛠️ Como Abrir e Rodar o Projeto
  1.Execute a aplicação em modo desenvolvimento:
